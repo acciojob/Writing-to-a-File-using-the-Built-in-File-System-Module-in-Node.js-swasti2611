@@ -2,13 +2,11 @@ const fs = require('fs');
 const http=require('http')
 // TODO: Write the message "Hello, World!" to the file "output.txt"
 
-const server=http.createServer((res,req)=>{
+
   fs.writeFile("./output.txt","Hello, World!",(err)=>{
     if(err){
-        console.log(err);
+        console.error('Error writing to file:', err);
+        throw err; 
     }
+    console.log('Message has been written to output.txt');
   })
-})
-server.listen(3000,()=>{
-    console.log("sever started");
-})
